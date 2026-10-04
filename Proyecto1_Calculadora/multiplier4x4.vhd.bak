@@ -1,0 +1,53 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity multiplier4x4 is
+    port (
+        a : in  std_logic_vector(3 downto 0);
+        b : in  std_logic_vector(3 downto 0);
+        p : out std_logic_vector(7 downto 0)
+    );
+end entity;
+
+architecture structural of multiplier4x4 is
+    signal t0, t1, t2, t3 : std_logic_vector(7 downto 0);
+    signal s1, s2         : std_logic_vector(7 downto 0);
+    signal c1, c2, c3     : std_logic;
+begin
+    t0(0) <= a(0) and b(0);
+    t0(1) <= a(1) and b(0);
+    t0(2) <= a(2) and b(0);
+    t0(3) <= a(3) and b(0);
+    t0(7 downto 4) <= (others => '0');
+
+    t1(0) <= '0';
+    t1(1) <= a(0) and b(1);
+    t1(2) <= a(1) and b(1);
+    t1(3) <= a(2) and b(1);
+    t1(4) <= a(3) and b(1);
+    t1(7 downto 5) <= (others => '0');
+
+    t2(0) <= '0';
+    t2(1) <= '0';
+    t2(2) <= a(0) and b(2);
+    t2(3) <= a(1) and b(2);
+    t2(4) <= a(2) and b(2);
+    t2(5) <= a(3) and b(2);
+    t2(7 downto 6) <= (others => '0');
+
+    t3(0) <= '0';
+    t3(1) <= '0';
+    t3(2) <= '0';
+    t3(3) <= a(0) and b(3);
+    t3(4) <= a(1) and b(3);
+    t3(5) <= a(2) and b(3);
+    t3(6) <= a(3) and b(3);
+    t3(7) <= '0';
+
+    add1: entity work.adder_n generic map (N => 8)
+        port map (a => t0, b => t1, cin => '0', sum => s1, cout => c1);
+    add2: entity work.adder_n generic map (N => 8)
+        port map (a => s1, b => t2, cin => '0', sum => s2, cout => c2);
+    add3: entity work.adder_n generic map (N => 8)
+        port map (a => s2, b => t3, cin => '0', sum => p, cout => c3);
+end architecture;
