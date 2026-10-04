@@ -1,14 +1,17 @@
-# Calculadora_FPGA_DE0
-Este repositorio contiene el diseño, código VHDL y archivos de síntesis de una calculadora digital con arquitectura modular, desarrollada e implementada sobre la tarjeta de desarrollo **Terasic DE0 (Altera/Intel Cyclone III EP3C16F484)**.
+# Combinational VHDL Calculator for Terasic DE0 FPGA
 
-## Características principales
-- **Operaciones soportadas:** Suma, Resta (con representación de signo-magnitud), Multiplicación BCD y operaciones lógicas.
-- **Entradas:** Configuración mediante los interruptores (`SW[9..0]`) y selección/prioridad de funciones mediante botones/pulsadores (`BTN`).
-- **Salidas:** Visualización del estado, operandos y resultado traducido a BCD en los 4 displays de 7 segmentos de ánodo común (`HEX3..HEX0`).
-- **Gestión de Errores e Indicadores:** Detección de sobreflujo (*overflow*), representación de números negativos (`-`) e indicación de error de entrada fuera del rango BCD (representado con `E` en pantalla y `LEDG9`).
-- **Modo de prueba:** Rutina de testeo de segmentos (*hardware test*) al presionar el botón de prueba (`BTN2`).
+This repository contains the design, VHDL code, and synthesis files for a digital calculator with a modular architecture, developed and implemented on the **Terasic DE0 development board (Altera/Intel Cyclone III EP3C16F484)**.
 
-## Herramientas y Tecnologías
-- **Lenguaje de Descripción de Hardware:** VHDL
-- **EDA / Software de Síntesis:** Intel Quartus Prime / Quartus II 13.0sp1
-- **Dispositivo Objetivo:** FPGA Cyclone III - EP3C16F484C6 (Terasic DE0)
+## Key Features
+
+- **Supported Operations:** Addition, Subtraction (with sign-magnitude representation), BCD Multiplication, and Logical operations.
+- **Inputs:** Configuration via slide switches (`SW[9..0]`) and function selection/priority via push buttons (`BTN`).
+- **Outputs:** Display of status, operands, and BCD-translated result across four common-anode 7-segment displays (`HEX3..HEX0`).
+- **Error Handling & Indicators:** Overflow detection, negative number representation (`-`), and out-of-range BCD input error indication (displayed as `E` on screen and flagged via `LEDG9`).
+- **Test Mode:** Hardware segment test routine activated by pressing the test button (`BTN2`).
+
+## Tools & Technologies
+
+- **Hardware Description Language:** VHDL
+- **EDA / Synthesis Software:** Intel Quartus Prime / Quartus II 13.0sp1
+- **Target Device:** Cyclone III FPGA - EP3C16F484C6 (Terasic DE0)
